@@ -7,7 +7,7 @@ const input = document.querySelector("input");
 const guesses = document.querySelector("#guesses");
 
 const num = randomNum();
-let count = 10;
+let count = 0;
 
 startBtn.onclick = function () {
   main.style.display = "flex";
@@ -31,8 +31,8 @@ function randomNum() {
 checkBtn.onclick = function (e) {
     e.preventDefault()
   if (input.value !== '') {
-     count--;
-  console.log(`You have only ${count} tries left`, typeof count);
+     count++;
+  console.log("click",count , typeof count);
 
   if (count === 10) {
     input.disabled = true;
@@ -49,10 +49,6 @@ checkBtn.onclick = function (e) {
     input.placeholder = 'Enter number';
     input.style.border = '1px solid red'
     return;
-  } else if (convertNum < num){
-    console.log('your guess is too low')
-  } else if (convertNum > num){
-    console.log('your guess is too high')
   } else if (convertNum !== num){
     input.style.border = '1px solid red'
     console.log(convertNum, typeof convertNum);
@@ -65,12 +61,9 @@ checkBtn.onclick = function (e) {
     textguess.style.marginRight = "5px";
 
     guesses.appendChild(textguess);
-
-    document.querySelector('#triesLeft').style.display = 'flex'
-    document.querySelector('#triesLeft').textContent = `You only have ${count} tries left!`;
   } else {
     document.querySelector('#label').textContent = 'You Win!';
-    document.querySelector('#triesLeft').style.display = 'none'
+
     input.style.display = 'none';
     numberCard.textContent = num;
     console.log("correct");
