@@ -6,13 +6,13 @@
     <title>Number Guessing Game</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="w-full h-dvh flex flex-center justify-center items-center">
+  <body class="bg-[url(https://static.vecteezy.com/system/resources/previews/018/874/279/original/spring-green-hills-landscape-farm-agriculture-and-garden-illustration-of-garden-work-garden-beds-planting-seedlings-rise-trees-and-nature-drawing-for-a-poster-postcard-or-background-free-vector.jpg)] bg-cover bg-no-repeat bg-center w-full h-dvh flex flex-center justify-center items-center">
     <div
       id="showNum"
-      class="flex flex-col justify-center items-center border border-black w-[50%] h-[500px] gap-[20px]"
+      class="relative bg-[#637ae4] text-white flex flex-col justify-center items-center border-[5px] border-black w-[30%] h-[500px] gap-[10px] rounded-[15px] max-sm:w-[95%]"
     >
-      <h1 class="text-[25px]">Number Guessing Game</h1>
-    <!-- Last Guess Box -->
+      <h1 class="text-[25px] font-[700] ">Number Guessing Game</h1>
+      <!-- Last Guess Box -->
       <div
         id="guesses"
         class="hidden border border-black p-[10px] w-[80%] h-auto flex-wrap"
@@ -21,32 +21,40 @@
         &nbsp;&nbsp;
       </div>
       <!-- Number of tries left -->
-      <div id="triesLeft" class="hidden">
-        
+      <div id="triesLeft" class="w-[80%] hidden justify-between items-center max-sm:flex-col">
+        <p id="highLow" class="text-[20px]"></p>
+        <p id="tries" class="text-[12px]"></p>
       </div>
-
+      <!-- Start button Container -->
       <div id="startContainer" class="flex">
-        <button id="startBtn" class="">Start</button>
+        <button id="startBtn" class="cursor-pointer bg-[#ff6460] px-7 py-2 font-[700] text-[20px] rounded-[20px]">Start</button>
       </div>
 
       <div
         id="main"
         class="hidden flex-col justify-center items-center gap-[10px]"
       >
+        <!-- random number card -->
         <div
           id="numberCard"
-          class="flex justify-center items-center bg-blue-300 w-[50px] h-[50px]"
-        ></div>
+          class="border-[2px] border-black flex justify-center items-center bg-white w-[100px] h-[100px] rounded-[5px]"
+        >
+          <p id="randomNumber" class="text-[45px] text-[#ff6460] font-[700]"></p>
+        </div>
 
         <div class="flex flex-col justify-center items-center gap-4" action="">
-          <label id="label" for="">Guess the number</label>
-          <input class="w-[60%] border border-black p-[5px]" type="number" />
+          <label id="label" for="">Guess your number</label>
+          <input class="bg-white caret-[#637ae4] w-[40%] text-[20px] p-[5px] text-[#637ae4] text-center rounded-[5px] outline-[#637ae4]" type="number" />
 
-          <button id="checkBtn" class="border border-black py-[5px] px-[10px]">
+          <button id="checkBtn" class="cursor-pointer bg-[#ff6460] py-[10px] px-[20px] font-[500] rounded-[5px]">
             Check your Answer
           </button>
         </div>
+
+        <button id="exitBtn" class="absolute cursor-pointer bottom-5 right-5">Exit</button>
       </div>
+
+      <button id="howToPlayBtn" class="absolute cursor-pointer bottom-5 right-5">How To Play</button>
     </div>
 
     <script src="./main.js"></script>

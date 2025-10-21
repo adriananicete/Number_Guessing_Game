@@ -5,19 +5,26 @@ const startContainer = document.querySelector("#startContainer");
 const numberCard = document.querySelector("#numberCard");
 const input = document.querySelector("input");
 const guesses = document.querySelector("#guesses");
+const triesLeft = document.querySelector("#triesLeft");
 
 const num = randomNum();
+let numOfTries = 10;
 let count = 0;
 
 startBtn.onclick = function () {
   main.style.display = "flex";
   startContainer.style.display = "none";
-
-  numberCard.textContent = "?";
+  howToPlayBtn.style.display = "none";
+  input.focus();
+  document.querySelector('#randomNumber').textContent = "?";
   console.log(num);
   console.log(num, typeof num);
   return num;
 };
+
+document.querySelector('#exitBtn').onclick = function(){
+  window.location.reload();
+}
 
 function randomNum() {
   const min = 1;
@@ -29,43 +36,65 @@ function randomNum() {
 }
 
 checkBtn.onclick = function (e) {
-    e.preventDefault()
-  if (input.value !== '') {
-     count++;
-  console.log("click",count , typeof count);
-
-  if (count === 10) {
-    input.disabled = true;
-    input.value = '';
-    checkBtn.textContent = 'Game Over!';
-    document.querySelector('#label').textContent = 'You Lose!';
-  }
-  } 
   const inputValue = document.querySelector("input").value;
 
   convertNum = Number(inputValue);
 
+    e.preventDefault()
+    //checks of input vaue that receive
+  if (inputValue !== '') {
+     count++;
+     numOfTries--;
+  console.log("click",count , typeof count);
+  console.log("tries:",numOfTries , typeof numOfTries);
+
+  triesLeft.style.display ='flex';
+  document.querySelector('#tries').textContent = `You only have ${numOfTries} tries left`;
+
+    
+  } 
+
+  if (count === 10) {
+    input.disabled = true;
+    input.value = '';
+    document.querySelector('#randomNumber').textContent = num;
+    checkBtn.textContent = 'Game Over!';
+    document.querySelector('#label').textContent = 'You Lose!';
+  }
+
+  
+
   if (inputValue === '' ) {
-    input.placeholder = 'Enter number';
+    input.placeholder = '? ';
     input.style.border = '1px solid red'
     return;
-  } else if (convertNum !== num){
+  } else if (convertNum !== num){   //checks of the guess number is correct
     input.style.border = '1px solid red'
     console.log(convertNum, typeof convertNum);
     console.log("wrong");
-    guesses.style.display = "flex";
+    guesses.style.display = "flex"; 
+    input.focus();
     textguess = document.createElement("p");
-
     textguess.textContent = convertNum;
-
     textguess.style.marginRight = "5px";
+
+    triesLeft.style.display ='flex';
+    
+      if (convertNum > num) {
+        document.querySelector('#highLow').textContent = 'Your number is too high';
+      } else {
+        document.querySelector('#highLow').textContent = 'Your number is too low';
+    }
 
     guesses.appendChild(textguess);
   } else {
-    document.querySelector('#label').textContent = 'You Win!';
-
+    document.querySelector('#label').textContent = 'You Win! 🎉🎉🎉';
+    guesses.style.display = "none";
+  triesLeft.style.display = "none";
     input.style.display = 'none';
-    numberCard.textContent = num;
+    document.querySelector('#randomNumber').textContent = num;
+    checkBtn.textContent = 'Congratulations!';
+    checkBtn.style.background = 'green';
     console.log("correct");
     input.disabled = true;
     input.value = "";
