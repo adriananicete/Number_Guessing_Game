@@ -55,6 +55,29 @@ checkBtn.onclick = function (e) {
     
   } 
 
+  if(count === 5){
+    document.querySelector('#highLow').style.display = 'none';
+    document.querySelector('#hint').style.display = 'flex';
+
+    if (num % 2 !== 0) {
+      document.querySelector('#hint').textContent = 'The number is odd!'
+    } else {
+      document.querySelector('#hint').textContent = 'The number is even!'
+    }
+  } else if(count === 7){
+    document.querySelector('#highLow').style.display = 'none';
+    document.querySelector('#hint').style.display = 'flex';
+
+    if (num % 5 !== 0) {
+      document.querySelector('#hint').textContent = 'The number is not divisible by 5'
+    } else {
+      document.querySelector('#hint').textContent = 'The number is divisible by 5'
+    }
+  } else{
+    document.querySelector('#highLow').style.display = 'flex';
+    document.querySelector('#hint').style.display = 'none';
+  }
+
   if (count === 10) {
     input.disabled = true;
     input.value = '';
