@@ -13,6 +13,7 @@ let count = 0;
 
 startBtn.onclick = function () {
   main.style.display = "flex";
+  objective.style.display = "none";
   startContainer.style.display = "none";
   howToPlayBtn.style.display = "none";
   input.focus();
@@ -57,6 +58,7 @@ checkBtn.onclick = function (e) {
   if (count === 10) {
     input.disabled = true;
     input.value = '';
+    input.style.display = 'none';
     document.querySelector('#randomNumber').textContent = num;
     checkBtn.textContent = 'Game Over!';
     document.querySelector('#label').textContent = 'You Lose!';
